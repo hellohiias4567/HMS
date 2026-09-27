@@ -106,12 +106,12 @@ const adminpanel = () => {
           <p className='text-lg font-semibold'>{appointmentcount}</p>
         </div>
         <div className=' dark:border-none border-2 border-gg rounded-2xl p-4 py-16 h-full  content-center text-gg bg-slate-300'>
-          <h1 className='text-2xl font-semibold'>Ristered Doctors</h1>
+          <h1 className='text-2xl font-semibold'>Registered Doctors</h1>
           <p className='text-2xl font-semibold'>{doctorCount}</p>
 
         </div>
         <div className=' dark:border-none border-2 border-bb rounded-2xl bg-slate-300 p-4 py-16 h-full  content-center text-bb '>
-          <h1 className='text-xl font-semibold'>Ristered Receptionist</h1>
+          <h1 className='text-xl font-semibold'>Registered Receptionist</h1>
           <p className='text-2xl font-semibold'>{repCount}</p>
 
         </div>

@@ -74,7 +74,7 @@ const Add = () => {
 
             });
             if (response.data.status === 'success') {
-                setProfile('Receptionist Added Successfully!')
+                setProfile('Staff Added Successfully!')
             } else if (response.data.status === 'already') {
 
                 setProfile('Receptionist already exist with this email..')
@@ -115,7 +115,7 @@ const Add = () => {
             <div>
                 <Navbar />
                 <div className="container mx-auto py-6 space-y-5 px-2">
-                    <h1 className="font-semibold text-lg">Add Receptionist</h1>
+                    <h1 className="font-semibold text-lg">Add Staff</h1>
                     <form onSubmit={handelsubmit}>
                         <label htmlFor="" className="text-xl text-red-600">{profile}</label>
 
@@ -149,7 +149,7 @@ const Add = () => {
 
                             <label htmlFor="" className="text-lg font-semibold dark:text-gray-400">Phone Number:</label>
                             <input type="number" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} className="p-3 border dark:border-none rounded-lg appearance-none" />
-                            <label htmlFor="" className="text-lg font-semibold dark:text-gray-400">Set Time:</label>
+                            <label htmlFor="" className="text-lg font-semibold dark:text-gray-400">Shift Time:</label>
                             <div className='flex justify-around items-center flex-wrap gap-4'>
                                 <label className="text-lg font-semibold dark:text-gray-400">Shift Start Time:</label>
                                 <select required  className='p-3' value={startTime} onChange={(e) => setStartTime(e.target.value)}>

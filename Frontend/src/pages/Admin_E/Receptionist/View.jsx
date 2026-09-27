@@ -43,7 +43,7 @@ const View = () => {
     <div>
       <Navbar></Navbar>
       <div className='p-8 border rounded-xl  mt-6 flex flex-wrap container mx-auto justify-between items-center '>
-        <h1 className='font-semibold text-lg '> Add Receptionist</h1>
+        <h1 className='font-semibold text-lg '> Add Staff</h1>
         <div className='flex gap-4'>
 
 

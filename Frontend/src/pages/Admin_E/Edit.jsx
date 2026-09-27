@@ -168,7 +168,7 @@ const Edit = () => {
 
 
                     <label htmlFor="" className='text-lg font-semibold text-gray-400 '>Phone Number:</label>
-                    <input type="number" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} className='p-3  border dark:border-none rounded-lg appearance-none' />
+                    <input type="tel" maclength = "10" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} className='p-3  border dark:border-none rounded-lg appearance-none' />
                     <label htmlFor="" className='text-lg font-semibold text-gray-400 '>Email:</label>
                     <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className='p-3  border dark:border-none rounded-lg appearance-none' />
 

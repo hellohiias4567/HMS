@@ -1,7 +1,7 @@
 import React from 'react'
 import { ContactForm, ContactCards } from '../components/rev'
 import Navbar from '../components/Navbar'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 
@@ -15,18 +15,19 @@ const Contact = () => {
   const [title, setTitle] = useState('')
 
 
-  const handelsubmit = (e) =>{
+  const handelsubmit = (e) => {
     e.preventDefault();
-    
-    axios.post('http://localhost:3001/message', { name,email,message,title })
-    .then((res)=>{console.log(res)
-      setProfile('Message Sended Successfully!')
-      setTimeout(() => {
-        setProfile('')
-      }, 3000);
 
-    })
-    .catch((err)=>{console.log(err)})
+    axios.post('http://localhost:3001/message', { name, email, message, title })
+      .then((res) => {
+        console.log(res)
+        setProfile('Message Sended Successfully!')
+        setTimeout(() => {
+          setProfile('')
+        }, 3000);
+
+      })
+      .catch((err) => { console.log(err) })
   }
   return (
 
@@ -59,13 +60,13 @@ const Contact = () => {
               <input
                 type="text"
                 placeholder="Your Name *"
-                onChange={(e)=>setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md text-lg"
               />
               <input
                 type="email"
                 placeholder="Your Email *"
-                onChange={(e)=>setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md text-lg"
               />
             </div>
@@ -75,14 +76,14 @@ const Contact = () => {
               <input
                 type="text"
                 placeholder="Subject *"
-                onChange={(e)=>setTitle(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md text-lg"
               />
             </div>
 
             <textarea
-            required
-            onChange={(e)=>setMessage(e.target.value)}
+              required
+              onChange={(e) => setMessage(e.target.value)}
               placeholder="Message"
               className="w-full p-3 border border-gray-300 rounded-md text-lg h-32"
             />
@@ -99,10 +100,16 @@ const Contact = () => {
       </div>
       <div className="overflow-hidden max-w-full w-full h-[500px]">
         <div id="google-maps-canvas" className="h-full w-full max-w-full">
-          <iframe
+          {/* <iframe
             title="Google Maps"
             className="h-full w-full border-0"
             src="https://www.google.com/maps/embed/v1/place?q=Statue+Of+Liberty&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+            allowFullScreen
+          ></iframe> */}
+          <iframe
+            title="Google Maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5154.076903367346!2d77.22733914055132!3d28.612312500445274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia%20Gate!5e1!3m2!1sen!2sin!4v1790406542854!5m2!1sen!2sin"
+            className="h-full w-full border-0"
             allowFullScreen
           ></iframe>
         </div>

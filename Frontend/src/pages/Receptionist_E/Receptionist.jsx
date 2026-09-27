@@ -24,7 +24,7 @@ const Receptionist = () => {
   return (
     <div>
       <Navbar></Navbar>
-<h1 className='text-3xl container mx-auto' >All Receptionist</h1>
+<h1 className='text-3xl container mx-auto' >All Staff</h1>
         <div class="container px-5 py-5 mx-auto">
 
           <div class="flex flex-wrap justify-around space-y-5 ">

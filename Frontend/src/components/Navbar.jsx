@@ -118,7 +118,7 @@ const Navbar = () => {
                     <Link to='/login' className='py-2 px-6  border-2  rounded-3xl hover:border-bb transition-all duration-500 hover:bg-bb cursor-pointer'>Login</Link>
                     {status ?
 
-                      <Link to='/rigister' className='py-2 px-6  border-2  rounded-3xl hover:border-bb transition-all duration-500 hover:bg-bb cursor-pointer'>Rigister Admin</Link>
+                      <Link to='/rigister' className='py-2 px-6  border-2  rounded-3xl hover:border-bb transition-all duration-500 hover:bg-bb cursor-pointer'>rigister Admin</Link>
                       : ''
                     }
 

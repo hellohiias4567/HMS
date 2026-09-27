@@ -147,8 +147,8 @@ const Adddoctor = () => {
                             <label htmlFor="" className="text-lg font-semibold dark:text-gray-400">Name:</label>
                             <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="p-3 border dark:border-none rounded-lg" />
 
-                            <label htmlFor="" className="text-lg font-semibold dark:text-gray-400">Phone Number:</label>
-                            <input type="number" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} className="p-3 border dark:border-none rounded-lg appearance-none" />
+                            <label htmlFor="" className="text-lg font-semibold dark:text-gray-400" >Phone Number:</label>
+                            <input type="tel" maxlength="10" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} className="p-3 border dark:border-none rounded-lg appearance-none" />
                             <label htmlFor="" className="text-lg font-semibold dark:text-gray-400">Spcialization:</label>
                             {/* <input type="text" value={spcialization} onChange={(e) => setSpcialization(e.target.value)} className="p-3 border dark:border-none rounded-lg" /> */}
                             <select name="" id="" required value={spcialization} onChange={(e) => setSpcialization(e.target.value)}   className='p-3 border dark:border-none rounded-lg' >

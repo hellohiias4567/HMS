@@ -52,7 +52,7 @@ const page = () => {
     // }
     // const handellogin2 = async (e) =>{
     //     e.preventDefault();
-    //     const res = axios.post('api/register',{email,password})
+    //     const res = axios.post('api/rigister',{email,password})
     //     if (res){
     //         console.log(res) 
     //     }

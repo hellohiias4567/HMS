@@ -291,17 +291,17 @@ const ContactCards = () => {
       <Card
         icon={MailIcon}
         title="Mail us 24/7"
-        contactInfo="info@HealthCare.pk"
+        contactInfo="info@HealthCare.com"
       />
       <Card
         icon={PhoneIcon}
         title="Call us 24/7"
-        contactInfo="Phone: +92-333-4252711"
+        contactInfo="Phone: +91-887777777"
       />
       <Card
         icon={LocationIcon}
         title="Our Locations"
-        contactInfo="13-CC, Commercial Area Phase-4, DHA, Lahore, Pakistan"
+        contactInfo="Dlf city Gurugram"
       />
     </div>
   );
