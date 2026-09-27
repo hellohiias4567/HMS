@@ -13,7 +13,7 @@ const Home = () => {
   const [data, setData] = useState([])
 
   const getdata = () => {
-    axios.get('http://localhost:3001/getdoctor')
+    axios.get('https://hmsbackend-gray.vercel.app/getdoctor')
       .then((res) => {
         console.log(res)
         setData(res.data)

@@ -59,7 +59,7 @@ const Adddoctor = () => {
             formData.append('profilePic', profilePic);
         }
         try {
-            const response = await axios.post('http://localhost:3001/docrigister', formData, {
+            const response = await axios.post('https://hmsbackend-gray.vercel.app/docrigister', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
 
             });
@@ -90,7 +90,7 @@ const Adddoctor = () => {
 
     }
     const getdata = () => {
-        axios.get('http://localhost:3001/getdep')
+        axios.get('https://hmsbackend-gray.vercel.app/getdep')
             .then((res) => {
                 console.log(res)
                 setData(res.data)

@@ -14,7 +14,7 @@ const Setting = () => {
 
 
   const getdata = (id) => {
-    axios.post('http://localhost:3001/repdata', { id })
+    axios.post('https://hmsbackend-gray.vercel.app/repdata', { id })
       .then((res) => {
         console.log(res)
         setData(res.data)
@@ -40,7 +40,7 @@ const Setting = () => {
           <div className='flex items-center flex-wrap md:justify-between justify-center  lg:justify-between  gap-2 md:px-5 px-0 lg:px-5'>
             <div className='flex flex-wrap gap-4 items-center md:justify-between justify-center  lg:justify-between md:px-5 px-0 lg:px-5'>
 
-              <img className='rounded-full object-cover w-[150px] h-[150px]' src={data.image ? `http://localhost:3001/uploads/${data.image}` : "https://via.placeholder.com/400"} alt="" />
+              <img className='rounded-full object-cover w-[150px] h-[150px]' src={data.image ? `https://hmsbackend-gray.vercel.app/uploads/${data.image}` : "https://via.placeholder.com/400"} alt="" />
               <div className='space-y-2'>
                 <h2 className='text-lg font-semibold'>{data.name}</h2>
                 <h4 className='text-gray-400'>Admin full Controll </h4>

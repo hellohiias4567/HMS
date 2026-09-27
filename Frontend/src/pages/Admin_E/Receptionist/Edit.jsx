@@ -39,14 +39,14 @@ const Edit = () => {
 
 
     const getdata = (id) => {
-        axios.post('http://localhost:3001/repdata', { id })
+        axios.post('https://hmsbackend-gray.vercel.app/repdata', { id })
             .then((res) => {
                 console.log(res)
                 setEmail(res.data.email)
                 setName(res.data.name)
                 setPhonenumber(res.data.phonenumber)
                 // setimage(res.data.image)
-                setTempurl(`http://localhost:3001/uploads/${res.data.image}`)
+                setTempurl(`https://hmsbackend-gray.vercel.app/uploads/${res.data.image}`)
                 setShiftTiming(res.data.shiftTiming)
                 setAge(res.data.age)
 
@@ -97,7 +97,7 @@ const Edit = () => {
         }
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3001/repupdate', formData, {
+            const response = await axios.post('https://hmsbackend-gray.vercel.app/repupdate', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
 
             });

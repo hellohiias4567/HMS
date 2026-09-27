@@ -13,7 +13,7 @@ const Department = () => {
 
 
     const getdata = () => {
-        axios.get('http://localhost:3001/getdep')
+        axios.get('https://hmsbackend-gray.vercel.app/getdep')
             .then((res) => {
                 console.log(res)
                 setData(res.data)
