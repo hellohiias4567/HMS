@@ -1,16 +1,6 @@
-# Dependencies
 node_modules/
-
-# Environment variables
 .env
 .env.*
 !.env.example
-
-# macOS
 .DS_Store
-
-# Logs
 *.log
-
-# Uploads
-# Backend/uploads/
