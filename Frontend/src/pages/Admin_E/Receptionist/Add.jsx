@@ -69,7 +69,7 @@ const Add = () => {
             formData.append('profilePic', profilePic);
         }
         try {
-            const response = await axios.post('http://localhost:3001/reprigister', formData, {
+            const response = await axios.post('https://hmsbackend-gray.vercel.app/reprigister', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
 
             });

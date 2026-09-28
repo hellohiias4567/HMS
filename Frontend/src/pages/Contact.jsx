@@ -18,7 +18,7 @@ const Contact = () => {
   const handelsubmit = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:3001/message', { name, email, message, title })
+    axios.post('https://hmsbackend-gray.vercel.app/message', { name, email, message, title })
       .then((res) => {
         console.log(res)
         setProfile('Message Sended Successfully!')

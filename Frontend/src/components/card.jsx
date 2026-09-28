@@ -88,7 +88,7 @@ const card = ({notices}) => {
                             {notices.map(data => (
                                 <div classNameName="p-4 md:w-1/3 ">
                                     <div className="h-full border-2 lg:mx-3 md:mx-5 mx-2 dark:border-gray-400 rounded-lg overflow-hidden">
-                                        <img className="lg:h-60 md:h-36 w-full object-fill object-center" src={data.image?`http://localhost:3001/uploads/${data.image}`:"https://dummyimage.com/302x302"} alt="blog" />
+                                        <img className="lg:h-60 md:h-36 w-full object-fill object-center" src={data.image?`https://hmsbackend-gray.vercel.app/uploads/${data.image}`:"https://dummyimage.com/302x302"} alt="blog" />
                                         <div className="p-6">
                                             <h1 className="title-font text-lg font-medium text-white mb-3">Name: {data.name}</h1>
                                             <p className="leading-relaxed mb-3">Department : {data.spcialization}</p>

@@ -10,7 +10,7 @@ const Message = () => {
 
 
     const getdata = () => {
-        axios.get('http://localhost:3001/getmessages')
+        axios.get('https://hmsbackend-gray.vercel.app/getmessages')
             .then((res) => {
                 console.log(res)
                 setData(res.data)
@@ -27,7 +27,7 @@ const Message = () => {
         getdata()
     }, [profile])
     const handeldelete = (id) =>{
-        axios.post('http://localhost:3001/messagedel',{id})
+        axios.post('https://hmsbackend-gray.vercel.app/messagedel',{id})
         .then((res) =>{console.log(res)
           if (res.data.status === 'success'){
             setProfile('Message Deleted Successfully!')

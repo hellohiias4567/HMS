@@ -15,7 +15,7 @@ const Receptionistpanel = () => {
 
     const fetchapointCount = async () => {
         try {
-            const res = await axios.get('http://localhost:3001/apointcount'); // Adjust the URL if necessary
+            const res = await axios.get('https://hmsbackend-gray.vercel.app/apointcount'); // Adjust the URL if necessary
 
             setAppointments(res.data)
 
@@ -37,7 +37,7 @@ const Receptionistpanel = () => {
 
     }, [profile])
     const getdata = (id) => {
-        axios.post('http://localhost:3001/doctordata', { id })
+        axios.post('https://hmsbackend-gray.vercel.app/doctordata', { id })
             .then((res) => {
                 console.log(res)
                 setName(res.data.name)
@@ -50,7 +50,7 @@ const Receptionistpanel = () => {
 
 
     const handeldelete = (id) => {
-        axios.post('http://localhost:3001/appointdel', { id })
+        axios.post('https://hmsbackend-gray.vercel.app/appointdel', { id })
             .then((res) => {
                 console.log(res)
                 if (res.data.status === 'success') {
@@ -65,7 +65,7 @@ const Receptionistpanel = () => {
     }
 
     const handelupdate = (id) => {
-        axios.post('http://localhost:3001/apointupdate', { id, status })
+        axios.post('https://hmsbackend-gray.vercel.app/apointupdate', { id, status })
             .then((res) => {
                 console.log(res)
                 if (res.data.status === 'success') {

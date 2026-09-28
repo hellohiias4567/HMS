@@ -17,7 +17,7 @@ const Navbar = () => {
   const token = localStorage.getItem('admintoken')
   const [menuico, setMenuico] = useState(menu);
   const getdata = () => {
-    axios.get('http://localhost:3001/getadmin')
+    axios.get('https://hmsbackend-gray.vercel.app/getadmin')
       .then((res) => {
         console.log('fuck')
         console.log(res)

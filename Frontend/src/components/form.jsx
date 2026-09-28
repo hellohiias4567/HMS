@@ -59,7 +59,7 @@ const page = () => {
     // }
     const handellogin =  (e) =>{
         e.preventDefault();
-        axios.post('http://localhost:3001/adminrigister' ,{name, email, password, phonenumber, gender })
+        axios.post('https://hmsbackend-gray.vercel.app/adminrigister' ,{name, email, password, phonenumber, gender })
         .then((res) => {console.log(res)})
         .catch((err) => {console.log(err)})
     }

@@ -55,7 +55,7 @@ const page = () => {
         setLoadings({ display: 'flex' })
 
 
-        axios.post('http://localhost:3001/adminlogin', { email, password })
+        axios.post('https://hmsbackend-gray.vercel.app/adminlogin', { email, password })
             .then((res) => {
                 const data = res.data
                 console.log(res)
