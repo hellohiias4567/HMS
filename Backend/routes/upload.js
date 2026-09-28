@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const router = express.Router();
-// const path = require('path');
+const path = require('path');
 
 
 const { v2: cloudinary } = require('cloudinary');
@@ -58,48 +58,13 @@ const uploadToCloudinary = (fileBuffer) => {
 
 
 // Define the route for file upload
-// router.post('/upload', upload.single('profilePic'), (req, res) => {
-//   if (!req.file) {
-//     return res.status(400).send({ message: 'Please upload a file' });
-//   }
-//   const profilePicPath = `/uploads/${req.file.filename}`;
-//   res.send({ filePath: profilePicPath, message: 'File uploaded successfully' });
-// });
-
-
-router.post(
-    '/upload',
-    upload.single('profilePic'),
-    async (req, res) => {
-
-        try {
-
-            if (!req.file) {
-                return res.status(400).json({
-                    message: 'Please upload a file'
-                });
-            }
-
-            const result =
-                await uploadToCloudinary(req.file.buffer);
-
-            res.json({
-                filePath: result.secure_url,
-                message: 'File uploaded successfully'
-            });
-
-        } catch (error) {
-
-            console.error('UPLOAD ERROR:', error);
-
-            res.status(500).json({
-                message: 'Image upload failed',
-                error: error.message
-            });
-        }
-    }
-);
-
+router.post('/upload', upload.single('profilePic'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send({ message: 'Please upload a file' });
+  }
+  const profilePicPath = `/uploads/${req.file.filename}`;
+  res.send({ filePath: profilePicPath, message: 'File uploaded successfully' });
+});
 
 router.get('/homed', (req, res) => {
     return res.json({ 'status': 'work' })
