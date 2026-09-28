@@ -13,7 +13,7 @@ const Department = () => {
 
 
     const getdata = () => {
-        axios.get('https://hmsbackend-gray.vercel.app/getdep')
+        axios.get('http://localhost:3001/getdep')
             .then((res) => {
                 console.log(res)
                 setData(res.data)
@@ -30,7 +30,7 @@ const Department = () => {
         getdata()
     }, [profile])
     const handeldelete = (id) => {
-        axios.post('https://hmsbackend-gray.vercel.app/depdel', { id })
+        axios.post('http://localhost:3001/depdel', { id })
             .then((res) => {
                 console.log(res)
                 if (res.data.status === 'success') {
@@ -45,7 +45,7 @@ const Department = () => {
     }
     const handelsubmit = (e) => {
         e.preventDefault()
-        axios.post('https://hmsbackend-gray.vercel.app/adddep', { name, description })
+        axios.post('http://localhost:3001/adddep', { name, description })
             .then((res) => {
                 console.log(res)
                 if (res.data.status === 'success') {

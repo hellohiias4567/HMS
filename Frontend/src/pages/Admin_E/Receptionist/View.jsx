@@ -10,7 +10,7 @@ const View = () => {
 
   const navi = useNavigate()
   const getdata = () => {
-    axios.get('https://hmsbackend-gray.vercel.app/getrep')
+    axios.get('http://localhost:3001/getrep')
       .then((res) => {
         console.log(res)
         setData(res.data)
@@ -18,7 +18,7 @@ const View = () => {
       .catch((er) => { console.log(err) })
   }
   const handeldelete = (id) =>{
-    axios.post('https://hmsbackend-gray.vercel.app/repdelete',{id})
+    axios.post('http://localhost:3001/repdelete',{id})
     .then((res) =>{console.log(res)
       if (res.data.status === 'success'){
         setProfile('Receptionist Deleted Successfully!')
@@ -61,7 +61,7 @@ const View = () => {
              
             <div class="px-6 border rounded-xl h-auto lg:mb-0 mb-6 p-2">
               <div class="h-full flex flex-col items-center justify-center text-center">
-                <img alt="testimonial" class="w-[200px] h-[200px] mb-2object-cover object-center object-cover rounded-full inline-block border-2 border-gray-200 bg-gray-100" src={data.image?`https://hmsbackend-gray.vercel.app/uploads/${data.image}`:"https://dummyimage.com/302x302"} />
+                <img alt="testimonial" class="w-[200px] h-[200px] mb-2object-cover object-center object-cover rounded-full inline-block border-2 border-gray-200 bg-gray-100" src={data.image?`http://localhost:3001/uploads/${data.image}`:"https://dummyimage.com/302x302"} />
                 {/* <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p> */}
                 <span class="inline-block h-1 w-10 rounded bg-gray-700 dark:bg-white mt-6 mb-4"></span>
                 <h2 class=" font-medium title-font tracking-wider text-sm">{data.name}</h2>

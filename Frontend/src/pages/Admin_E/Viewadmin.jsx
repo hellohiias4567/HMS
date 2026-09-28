@@ -10,7 +10,7 @@ const Viewadmin = () => {
   const [profile, setProfile] = useState('')
 
   const getdata = () => {
-    axios.get('https://hmsbackend-gray.vercel.app/getadmin')
+    axios.get('http://localhost:3001/getadmin')
       .then((res) => {
         console.log(res)
         setData(res.data)
@@ -18,7 +18,7 @@ const Viewadmin = () => {
       .catch((er) => { console.log(err) })
   }
   const handeldelete = (id) =>{
-    axios.post('https://hmsbackend-gray.vercel.app/admindelete',{id})
+    axios.post('http://localhost:3001/admindelete',{id})
     .then((res) =>{console.log(res)
       if (res.data.status === 'success'){
         setProfile('Admin Deleted Successfully!')
@@ -54,7 +54,7 @@ const Viewadmin = () => {
 
 
               <div className='p-2 flex flex-wrap gap-2  border   w-full rounded-xl items-center'>
-                <img src={data.image ? `https://hmsbackend-gray.vercel.app/uploads/${data.image}`: "https://via.placeholder.com/400"}  className='w-[80px] h-[80px] object-cover rounded-full border-2' alt="" />
+                <img src={data.image ? `http://localhost:3001/uploads/${data.image}`: "https://via.placeholder.com/400"}  className='w-[80px] h-[80px] object-cover rounded-full border-2' alt="" />
                 <h1>{data.name}</h1>
                 ||
                 <h2>{data.gender}</h2>

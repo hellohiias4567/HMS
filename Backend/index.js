@@ -28,7 +28,7 @@ const app = express(
 
 )
 app.use(cors({
-    origin: 'https://sunshinehospital-six.vercel.app',
+    origin: '*',
 
     credentials: true
 }));

@@ -46,7 +46,7 @@ const Addadmin = () => {
       formData.append('profilePic', profilePic);
     }
     try {
-      const response = await axios.post('https://hmsbackend-gray.vercel.app/adminrigister', formData, {
+      const response = await axios.post('http://localhost:3001/adminrigister', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
 
       });

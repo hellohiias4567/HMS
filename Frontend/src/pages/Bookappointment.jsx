@@ -24,7 +24,7 @@ const Bookappointment = () => {
     const [docdata, setDocData] = useState([])
 
     const getdata = () => {
-        axios.get('https://hmsbackend-gray.vercel.app/getdep')
+        axios.get('http://localhost:3001/getdep')
             .then((res) => {
                 console.log(res)
                 setData(res.data)
@@ -32,7 +32,7 @@ const Bookappointment = () => {
             .catch((err) => { console.log(err) })
     }
     const getdocdata = () => {
-        axios.get('https://hmsbackend-gray.vercel.app/getdoctor')
+        axios.get('http://localhost:3001/getdoctor')
             .then((res) => {
                 console.log(res)
                 setDocData(res.data)
@@ -64,7 +64,7 @@ const Bookappointment = () => {
           data.append(key, formData[key]);
         }
         console.log(formData)
-        axios.post('https://hmsbackend-gray.vercel.app/appointment',{formData})
+        axios.post('http://localhost:3001/appointment',{formData})
         .then((res)=>{
             console.log(res)
             if (res.data.status === 'success') {

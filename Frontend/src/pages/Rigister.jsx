@@ -35,7 +35,7 @@ const page = () => {
     const [loadings, setLoadings] = useState({ display: 'none' })
 
     const getdata = () => {
-        axios.get('https://hmsbackend-gray.vercel.app/getadmin')
+        axios.get('http://localhost:3001/getadmin')
           .then((res) => {
             console.log('fuck')
             console.log(res)
@@ -68,7 +68,7 @@ const page = () => {
         e.preventDefault();
         setLoadings({ display: 'flex' })
 
-        axios.post('https://hmsbackend-gray.vercel.app/adminrigister' ,{name, email, password, phonenumber, gender })
+        axios.post('http://localhost:3001/adminrigister' ,{name, email, password, phonenumber, gender })
         .then((res) => {console.log(res)
             setLoadings({display:'none'})
             navi('/login')

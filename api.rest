@@ -1,5 +1,5 @@
 # Base URL (Base Url is a Server Url where all endpoint is created and will be call and make sure that server is running before sending request)
-@baseUrl = https://hmsbackend-gray.vercel.app
+@baseUrl = http://localhost:3001
 
 # Testing the Root Endpoint
 GET {{baseUrl}}/

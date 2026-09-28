@@ -18,7 +18,7 @@ const adminpanel = () => {
   useEffect(() => {
     const fetchDoctorCount = async () => {
       try {
-        const res = await axios.get('https://hmsbackend-gray.vercel.app/doctorscount'); // Adjust the URL if necessary
+        const res = await axios.get('http://localhost:3001/doctorscount'); // Adjust the URL if necessary
 
         setDoctorCount(res.data.count);
         console.log(res)
@@ -28,7 +28,7 @@ const adminpanel = () => {
     };
     const fetchrepCount = async () => {
       try {
-        const res = await axios.get('https://hmsbackend-gray.vercel.app/repcount'); // Adjust the URL if necessary
+        const res = await axios.get('http://localhost:3001/repcount'); // Adjust the URL if necessary
 
         setRepCount(res.data.count);
         console.log(res)
@@ -38,7 +38,7 @@ const adminpanel = () => {
     };
     const fetchapointCount = async () => {
       try {
-        const res = await axios.get('https://hmsbackend-gray.vercel.app/apointcount'); // Adjust the URL if necessary
+        const res = await axios.get('http://localhost:3001/apointcount'); // Adjust the URL if necessary
 
         setAppointmentcount(res.data.length);
         setAppointments(res.data)
@@ -52,7 +52,7 @@ const adminpanel = () => {
     fetchDoctorCount();
   }, [profile]);
   const handelupdate = (id) => {
-    axios.post('https://hmsbackend-gray.vercel.app/apointupdate', { id, status })
+    axios.post('http://localhost:3001/apointupdate', { id, status })
       .then((res) => {
         console.log(res)
         if (res.data.status === 'success') {
@@ -77,7 +77,7 @@ const adminpanel = () => {
 
   }, [profile])
   const handeldelete = (id) => {
-    axios.post('https://hmsbackend-gray.vercel.app/appointdel', { id })
+    axios.post('http://localhost:3001/appointdel', { id })
       .then((res) => {
         console.log(res)
         if (res.data.status === 'success') {

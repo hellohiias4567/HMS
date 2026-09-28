@@ -32,14 +32,14 @@ const Doctoredit = () => {
 
 
     const getdata = (id) => {
-        axios.post('https://hmsbackend-gray.vercel.app/doctordata', { id })
+        axios.post('http://localhost:3001/doctordata', { id })
             .then((res) => {
                 console.log(res)
                 setEmail(res.data.email)
                 setName(res.data.name)
                 setPhonenumber(res.data.phonenumber)
                 // setimage(res.data.image)
-                setTempurl(`https://hmsbackend-gray.vercel.app/uploads/${res.data.image}`)
+                setTempurl(`http://localhost:3001/uploads/${res.data.image}`)
                 setSpcialization(res.data.spcialization)
                 setAge(res.data.age)
 
@@ -49,7 +49,7 @@ const Doctoredit = () => {
             .catch((err) => { console.log(err) })
     }
     const getdata2 = () => {
-        axios.get('https://hmsbackend-gray.vercel.app/getdep')
+        axios.get('http://localhost:3001/getdep')
             .then((res) => {
                 console.log(res)
                 setData(res.data)
@@ -90,7 +90,7 @@ const Doctoredit = () => {
         }
         e.preventDefault();
         try {
-            const response = await axios.post('https://hmsbackend-gray.vercel.app/docupdate', formData, {
+            const response = await axios.post('http://localhost:3001/docupdate', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
 
             });

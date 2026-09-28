@@ -36,7 +36,7 @@ const Edit = () => {
     const [gender, setGender] = useState('Loading')
     const [phonenumber, setPhonenumber] = useState('Loading...')
     const getdata = (id) => {
-        axios.post('https://hmsbackend-gray.vercel.app/admindata', { id })
+        axios.post('http://localhost:3001/admindata', { id })
             .then((res) => {
                 console.log(res)
                 setData(res.data)
@@ -44,7 +44,7 @@ const Edit = () => {
                 setName(res.data.name)
                 setPhonenumber(res.data.phonenumber)
                 // setimage(res.data.image)
-                setTempurl(`https://hmsbackend-gray.vercel.app/uploads/${res.data.image}`)
+                setTempurl(`http://localhost:3001/uploads/${res.data.image}`)
 
 
 
@@ -81,7 +81,7 @@ const Edit = () => {
         }
         e.preventDefault();
         try {
-            const response = await axios.post('https://hmsbackend-gray.vercel.app/adminupdate', formData, {
+            const response = await axios.post('http://localhost:3001/adminupdate', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
               
             });
@@ -97,7 +97,7 @@ const Edit = () => {
     const handelpassword = async (e) =>{
         e.preventDefault();
         try {
-            const response = await axios.post('https://hmsbackend-gray.vercel.app/adminpass',  {id, password, newpassword});
+            const response = await axios.post('http://localhost:3001/adminpass',  {id, password, newpassword});
             if(response.data.message === 'success'){
                 window.scroll(0,0)
 
@@ -142,7 +142,7 @@ const Edit = () => {
 
                     <div className='w-[160px] h-[160px] rounded-full  '>
 
-                        {/* <img className='w-[160px] h-[160px] object-cover rounded-full' src={image ? `https://hmsbackend-gray.vercel.app/uploads/${image}`: "https://via.placeholder.com/400"} alt="" /> */}
+                        {/* <img className='w-[160px] h-[160px] object-cover rounded-full' src={image ? `http://localhost:3001/uploads/${image}`: "https://via.placeholder.com/400"} alt="" /> */}
                         <img className='w-[160px] h-[160px] object-cover rounded-full' src={tempurl ? tempurl :"https://via.placeholder.com/400"}
                             alt="" />
 
