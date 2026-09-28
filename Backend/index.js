@@ -9,8 +9,8 @@ const ReceptionistModel = require('./models/receptionist')
 const MessageModel = require('./models/message')
 const DepartmentModel = require('./models/department')
 const AppointmentModel = require('./models/appointment')
-const result = await uploadToCloudinary(req.file.buffer);
-const imageUrl = result.secure_url;
+// const result = await uploadToCloudinary(req.file.buffer);
+// const imageUrl = result.secure_url;
 
 // const path = require('path');
 const uploadRoutes = require('./routes/upload');
