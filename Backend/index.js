@@ -33,9 +33,9 @@ app.use(cors({
 app.use(express.json(
 
 ))
-mongoose.connect('mongodb://localhost:27017/hms')
+mongoose.connect('mongodb+srv://hmsadmin:Password@hms-cluster.aqgv3kh.mongodb.net/?appName=HMS-Cluster')
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 
@@ -441,29 +441,89 @@ app.post('/doctordata', async (req, res) => {
     }
 
 })
+// app.post('/docupdate', upload.single('profilePic'), async (req, res) => {
+//     const { id, name, email, phonenumber, spcialization, age } = req.body;
+//     try {
+//         const doc = await DoctorModel.findById(id)
+//         if (doc) {
+
+//             const admin = await DoctorModel.findByIdAndUpdate(id, { name, email, phonenumber, spcialization, age, image: req.file ? req.file.filename : doc.image }, { new: true })
+//             if (admin) {
+//                 res.json(admin)
+//             }
+//             else {
+//                 res.json({ 'error': '303' })
+
+//             }
+//         }
+
+//     }
+//     catch (err) {
+//         console.log(err)
+//         res.json({ status: 'Server error' });
+
+//     }
+// })
+
+
+
 app.post('/docupdate', upload.single('profilePic'), async (req, res) => {
-    const { id, name, email, phonenumber, spcialization, age } = req.body;
     try {
-        const doc = await DoctorModel.findById(id)
-        if (doc) {
+        const {
+            id,
+            name,
+            email,
+            phonenumber,
+            spcialization,
+            age
+        } = req.body;
 
-            const admin = await DoctorModel.findByIdAndUpdate(id, { name, email, phonenumber, spcialization, age, image: req.file ? req.file.filename : doc.image }, { new: true })
-            if (admin) {
-                res.json(admin)
-            }
-            else {
-                res.json({ 'error': '303' })
+        const doc = await DoctorModel.findById(id);
 
-            }
+        if (!doc) {
+            return res.status(404).json({
+                error: 'Doctor not found'
+            });
         }
 
-    }
-    catch (err) {
-        console.log(err)
-        res.json({ status: 'Server error' });
+        let image = doc.image;
 
+        // Upload new image only if user selected one
+        if (req.file) {
+            const result = await uploadToCloudinary(req.file.buffer);
+            image = result.secure_url;
+        }
+
+        const updatedDoctor = await DoctorModel.findByIdAndUpdate(
+            id,
+            {
+                name,
+                email,
+                phonenumber,
+                spcialization,
+                age,
+                image
+            },
+            {
+                new: true
+            }
+        );
+
+        return res.json(updatedDoctor);
+
+    } catch (err) {
+        console.error('DOCUPDATE ERROR:', err);
+
+        return res.status(500).json({
+            status: 'Server error',
+            error: err.message
+        });
     }
-})
+});
+
+
+
+
 app.post('/docdelete', async (req, res) => {
     const { id } = req.body
     try {

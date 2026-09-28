@@ -3,8 +3,15 @@ const multer = require('multer');
 const router = express.Router();
 const path = require('path');
 
+
+const { v2: cloudinary } = require('cloudinary');
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 // Set up storage configuration
-const storage = multer.diskStorage({
+/*const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/'); // specify upload directory
   },
@@ -14,7 +21,41 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }); */
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+        fileSize: 5 * 1024 * 1024
+    }
+});
+
+
+
+
+
+
+const uploadToCloudinary = (fileBuffer) => {
+    return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            {
+                folder: 'sunshine-hospital/profiles',
+                resource_type: 'image'
+            },
+            (error, result) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+            }
+        );
+
+        stream.end(fileBuffer);
+    });
+};
+
+
+
 
 // Define the route for file upload
 router.post('/upload', upload.single('profilePic'), (req, res) => {
