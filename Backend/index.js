@@ -9,8 +9,10 @@ const ReceptionistModel = require('./models/receptionist')
 const MessageModel = require('./models/message')
 const DepartmentModel = require('./models/department')
 const AppointmentModel = require('./models/appointment')
+const result = await uploadToCloudinary(req.file.buffer);
+const imageUrl = result.secure_url;
 
-const path = require('path');
+// const path = require('path');
 const uploadRoutes = require('./routes/upload');
 const multer = require('multer');
 const router = express.Router();
@@ -211,6 +213,10 @@ app.post('/adminrigister', upload.single('profilePic'), async (req, res) => {
 
         const { name, email, password, phonenumber, gender } = req.body;
         const existingUser = await AdminModel.findOne({ email })
+        
+
+
+
         if (existingUser) {
             return res.json({ 'status': 'already' })
         } else {
@@ -218,13 +224,22 @@ app.post('/adminrigister', upload.single('profilePic'), async (req, res) => {
 
             const passwordhash = await bcrypt.hash(password, 10)
 
+
+            let imageUrl = null;
+
+            if (req.file) {
+                const result = await uploadToCloudinary(req.file.buffer);
+                imageUrl = result.secure_url;
+            }
+
             const admin = new AdminModel({
                 name,
                 email,
                 phonenumber,
                 password: passwordhash,
                 gender,
-                image: req.file ? req.file.filename : null
+                // image: req.file ? req.file.filename : null
+                image: imageUrl
             });
             await admin.save();
             res.json({ status: 'success' })
@@ -307,29 +322,89 @@ app.get('/dashboard', authenticateToken, (req, res) => {
 
 /// Making Changes for Admin 
 
+// app.post('/adminupdate', upload.single('profilePic'), async (req, res) => {
+//     const { id, name, email, phonenumber } = req.body;
+//     try {
+//         const admindata = await AdminModel.findById(id)
+//         if (admindata) {
+
+//             const admin = await AdminModel.findByIdAndUpdate(id, { name, email, phonenumber, image: req.file ? req.file.filename : admindata.image }, { new: true })
+//             if (admin) {
+//                 res.json(admin)
+//             }
+//             else {
+//                 res.json({ 'error': '303' })
+
+//             }
+//         }
+
+//     }
+//     catch (err) {
+//         console.log(err)
+//         res.json({ status: 'Server error' });
+
+//     }
+// })
+
+
 app.post('/adminupdate', upload.single('profilePic'), async (req, res) => {
-    const { id, name, email, phonenumber } = req.body;
+
     try {
-        const admindata = await AdminModel.findById(id)
-        if (admindata) {
 
-            const admin = await AdminModel.findByIdAndUpdate(id, { name, email, phonenumber, image: req.file ? req.file.filename : admindata.image }, { new: true })
-            if (admin) {
-                res.json(admin)
-            }
-            else {
-                res.json({ 'error': '303' })
+        const {
+            id,
+            name,
+            email,
+            phonenumber
+        } = req.body;
 
-            }
+        const admindata = await AdminModel.findById(id);
+
+        if (!admindata) {
+            return res.status(404).json({
+                error: 'Admin not found'
+            });
         }
 
-    }
-    catch (err) {
-        console.log(err)
-        res.json({ status: 'Server error' });
+        let imageUrl = admindata.image;
 
+        if (req.file) {
+
+            const result = await uploadToCloudinary(
+                req.file.buffer
+            );
+
+            imageUrl = result.secure_url;
+        }
+
+        const admin = await AdminModel.findByIdAndUpdate(
+            id,
+            {
+                name,
+                email,
+                phonenumber,
+                image: imageUrl
+            },
+            {
+                new: true
+            }
+        );
+
+        return res.json(admin);
+
+    } catch (err) {
+
+        console.error('ADMIN UPDATE ERROR:', err);
+
+        return res.status(500).json({
+            status: 'Server error',
+            error: err.message
+        });
     }
-})
+});
+
+
+
 app.post('/adminpass', async (req, res) => {
     const { id, password, newpassword } = req.body;
     try {
@@ -393,35 +468,99 @@ app.get('/getadmin', (req, res) => {
 }
 )
 /// Doctor Addition via Admin
+// app.post('/docrigister', upload.single('profilePic'), async (req, res) => {
+//     try {
+
+//         const { name, email, password, phonenumber, gender, spcialization, age, bg, address } = req.body;
+//         const existingUser = await DoctorModel.findOne({ email })
+//         if (existingUser) {
+//             return res.json({ 'status': 'already' })
+//         } else {
+
+
+//             const passwordhash = await bcrypt.hash(password, 10)
+
+//             const doc = new DoctorModel({
+//                 name,
+//                 email,
+//                 phonenumber,
+//                 password: passwordhash,
+//                 gender, spcialization, age, bg, address,
+//                 // image: req.file ? req.file.filename : null
+//                 image: imageUrl
+//             });
+//             await doc.save();
+//             res.json({ status: 'success' })
+//         }
+//     }
+//     catch (err) {
+//         console.error(err);
+//         res.json({ 'status': 'Server error' });
+//     }
+// })
+
+
+
+
 app.post('/docrigister', upload.single('profilePic'), async (req, res) => {
     try {
 
-        const { name, email, password, phonenumber, gender, spcialization, age, bg, address } = req.body;
-        const existingUser = await DoctorModel.findOne({ email })
+        const {
+            name,
+            email,
+            password,
+            phonenumber,
+            gender,
+            spcialization,
+            age,
+            bg,
+            address
+        } = req.body;
+
+        const existingUser = await DoctorModel.findOne({ email });
+
         if (existingUser) {
-            return res.json({ 'status': 'already' })
-        } else {
-
-
-            const passwordhash = await bcrypt.hash(password, 10)
-
-            const doc = new DoctorModel({
-                name,
-                email,
-                phonenumber,
-                password: passwordhash,
-                gender, spcialization, age, bg, address,
-                image: req.file ? req.file.filename : null
-            });
-            await doc.save();
-            res.json({ status: 'success' })
+            return res.json({ status: 'already' });
         }
+
+        const passwordhash = await bcrypt.hash(password, 10);
+
+        let imageUrl = null;
+
+        if (req.file) {
+            const result = await uploadToCloudinary(req.file.buffer);
+            imageUrl = result.secure_url;
+        }
+
+        const doc = new DoctorModel({
+            name,
+            email,
+            password: passwordhash,
+            phonenumber,
+            gender,
+            spcialization,
+            age,
+            bg,
+            address,
+            image: imageUrl
+        });
+
+        await doc.save();
+
+        res.json({
+            status: 'success'
+        });
+
+    } catch (err) {
+
+        console.error('DOCTOR REGISTER ERROR:', err);
+
+        res.status(500).json({
+            status: 'Server error',
+            error: err.message
+        });
     }
-    catch (err) {
-        console.error(err);
-        res.json({ 'status': 'Server error' });
-    }
-})
+});
 
 app.get('/getdoctor', (req, res) => {
     DoctorModel.find()
@@ -560,13 +699,21 @@ app.post('/reprigister', upload.single('profilePic'), async (req, res) => {
 
             const passwordhash = await bcrypt.hash(password, 10)
 
+            let imageUrl = null;
+
+            if (req.file) {
+                const result = await uploadToCloudinary(req.file.buffer);
+                imageUrl = result.secure_url;
+            }
+
             const doc = new ReceptionistModel({
                 name,
                 email,
                 phonenumber,
                 password: passwordhash,
                 gender, shiftTiming, age, bg, address,
-                image: req.file ? req.file.filename : null
+                // image: req.file ? req.file.filename : null
+                image: imageUrl
             });
             await doc.save();
             res.json({ status: 'success' })
@@ -703,8 +850,16 @@ app.post('/repupdate', upload.single('profilePic'), async (req, res) => {
     try {
         const doc = await ReceptionistModel.findById(id)
         if (doc) {
+            let imageUrl = doc.image;
 
-            const admin = await ReceptionistModel.findByIdAndUpdate(id, { name, email, phonenumber, age, image: req.file ? req.file.filename : doc.image }, { new: true })
+            if (req.file) {
+                const result = await uploadToCloudinary(req.file.buffer);
+                imageUrl = result.secure_url;
+            }
+            const admin = await ReceptionistModel.findByIdAndUpdate(id, { name, email, phonenumber, age, 
+                // image: req.file ? req.file.filename : doc.image
+                image: imageUrl
+             }, { new: true })
             if (admin) {
                 res.json(admin)
             }
