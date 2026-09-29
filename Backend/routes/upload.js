@@ -108,4 +108,8 @@ router.get('/homed', (req, res) => {
     return res.json({ 'status': 'work' })
 })
 
-module.exports = router;
+// module.exports = router;
+module.exports = {
+    router,
+    uploadToCloudinary
+};

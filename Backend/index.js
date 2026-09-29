@@ -13,17 +13,22 @@ const AppointmentModel = require('./models/appointment')
 // const imageUrl = result.secure_url;
 
 // const path = require('path');
-const uploadRoutes = require('./routes/upload');
 const multer = require('multer');
 const router = express.Router();
 
 
+// const uploadRoutes = require('./routes/upload');
+const {
+    router: uploadRoutes,
+    uploadToCloudinary
+} = require('./routes/upload');
 
 
  
 
 
 const SCREAT_KEY = "Umair"
+// const SCREAT_KEY = process.env.JWT_SECRET;
 const app = express(
 
 )
@@ -64,7 +69,7 @@ const storage = multer.memoryStorage();
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 4 * 1024 * 1024
+    fileSize: 5 * 1024 * 1024
   }
 });
 
@@ -745,29 +750,29 @@ app.get('/getrep', (req, res) => {
         .catch(err => res.json(err))
 }
 )
-app.post('/repupdate', upload.single('profilePic'), async (req, res) => {
-    const { id, name, email, phonenumber, shiftTiming, age } = req.body;
-    try {
-        const doc = await ReceptionistModel.findById(id)
-        if (doc) {
+// app.post('/repupdate', upload.single('profilePic'), async (req, res) => {
+//     const { id, name, email, phonenumber, shiftTiming, age } = req.body;
+//     try {
+//         const doc = await ReceptionistModel.findById(id)
+//         if (doc) {
 
-            const admin = await ReceptionistModel.findByIdAndUpdate(id, { name, email, phonenumber, shiftTiming, age, image: req.file ? req.file.filename : doc.image }, { new: true })
-            if (admin) {
-                res.json(admin)
-            }
-            else {
-                res.json({ 'error': '303' })
+//             const admin = await ReceptionistModel.findByIdAndUpdate(id, { name, email, phonenumber, shiftTiming, age, image: req.file ? req.file.filename : doc.image }, { new: true })
+//             if (admin) {
+//                 res.json(admin)
+//             }
+//             else {
+//                 res.json({ 'error': '303' })
 
-            }
-        }
+//             }
+//         }
 
-    }
-    catch (err) {
-        console.log(err)
-        res.json({ status: 'Server error' });
+//     }
+//     catch (err) {
+//         console.log(err)
+//         res.json({ status: 'Server error' });
 
-    }
-})
+//     }
+// })
 app.post('/repdata', async (req, res) => {
     const { id } = req.body
     const doc = await ReceptionistModel.findOne({ _id: id })
