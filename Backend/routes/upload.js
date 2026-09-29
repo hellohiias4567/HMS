@@ -21,6 +21,9 @@ cloudinary.config({
   }
 });
 
+
+
+
 const upload = multer({ storage: storage }); */
 const upload = multer({
     storage: multer.memoryStorage(),

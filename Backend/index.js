@@ -20,7 +20,7 @@ const router = express.Router();
 
 
 
-
+ 
 
 
 const SCREAT_KEY = "Umair"
@@ -43,17 +43,32 @@ mongoose.connect('mongodb+srv://hmsadmin:Password@hms-cluster.aqgv3kh.mongodb.ne
 
 
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // specify upload directory
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname)); // unique file name
-    }
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'uploads/'); // specify upload directory
+//     },
+//     filename: function (req, file, cb) {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+//         cb(null, uniqueSuffix + path.extname(file.originalname)); // unique file name
+//     }
+// });
+
+// const upload = multer({ storage: storage });
+
+
+
+// const multer = require("multer");
+
+const storage = multer.memoryStorage();
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 4 * 1024 * 1024
+  }
 });
 
-const upload = multer({ storage: storage });
+
 
 // ****
 app.use('/api', uploadRoutes);
