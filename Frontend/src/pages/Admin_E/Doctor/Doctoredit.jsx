@@ -39,7 +39,7 @@ const Doctoredit = () => {
                 setName(res.data.name)
                 setPhonenumber(res.data.phonenumber)
                 // setimage(res.data.image)
-                setTempurl(`https://hmsbackend-gray.vercel.app/uploads/${res.data.image}`)
+                setTempurl(res.data.image)
                 setSpcialization(res.data.spcialization)
                 setAge(res.data.age)
 

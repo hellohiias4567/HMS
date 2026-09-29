@@ -54,7 +54,8 @@ const Viewadmin = () => {
 
 
               <div className='p-2 flex flex-wrap gap-2  border   w-full rounded-xl items-center'>
-                <img src={data.image ? `https://hmsbackend-gray.vercel.app/uploads/${data.image}`: "https://via.placeholder.com/400"}  className='w-[80px] h-[80px] object-cover rounded-full border-2' alt="" />
+                {/* <img src={data.image ? `https://hmsbackend-gray.vercel.app/uploads/${data.image}`: "https://via.placeholder.com/400"}  className='w-[80px] h-[80px] object-cover rounded-full border-2' alt="" /> */}
+                <img src={data.image ? data.image: "https://via.placeholder.com/400"}  className='w-[80px] h-[80px] object-cover rounded-full border-2' alt="" />
                 <h1>{data.name}</h1>
                 ||
                 <h2>{data.gender}</h2>
